@@ -8,10 +8,6 @@ No matter how hard you try... there will always be someone that loves you more. 
 
 We try this once more:
 
-There will be a thousand.
-
-jetzt ist die zeit
-
 {% highlight ruby %}
 def print_hi(name)
   puts "Hi, #{name}"
