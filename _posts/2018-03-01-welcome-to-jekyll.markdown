@@ -8,7 +8,7 @@ No matter how hard you try... there will always be someone that loves you more. 
 
 We try this once more:
 
-There will be an update.
+There will be a thousand.
 
 {% highlight ruby %}
 def print_hi(name)
