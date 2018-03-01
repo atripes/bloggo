@@ -6,7 +6,7 @@ categories: vag.
 ---
 No matter how hard you try... there will always be someone that loves you more. It's Jesus.
 
-Jekyll also offers powerful support for code snippets:
+We try this once more:
 
 {% highlight ruby %}
 def print_hi(name)
