@@ -1,2 +1,0 @@
-# bloggo
-devblog
