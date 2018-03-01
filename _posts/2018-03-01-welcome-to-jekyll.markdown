@@ -8,6 +8,8 @@ No matter how hard you try... there will always be someone that loves you more. 
 
 We try this once more:
 
+There will be an update.
+
 {% highlight ruby %}
 def print_hi(name)
   puts "Hi, #{name}"
