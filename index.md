@@ -1,6 +1,9 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 layout: home
+title: Home
+landing-title: 'atripes devblog' #Main headline
+description: A developers blog for self presentation<br />and to keep all kind of guides/ideas/findings in a centralized place.
+author: atripes
 ---
+
+Now you can see!
