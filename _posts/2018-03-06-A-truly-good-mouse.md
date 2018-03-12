@@ -3,7 +3,8 @@ layout: post
 title:  "A truly good mouse."
 description: "Buying mice is a task I fear. Here is some good advice on what to consider."
 date:   2018-02-06 20:29:21 +0100
-categories: tech, hardware
+categories: tech hardware
+permalink: /a-truly-good-mouse
 ---
 Straight forward, the best piece of hardware I laid my hands on in the past decade was this lovely piece:
 
