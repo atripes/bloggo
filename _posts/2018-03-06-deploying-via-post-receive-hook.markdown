@@ -2,6 +2,7 @@
 layout: post
 title: Deploying via post-receive hook
 description: easy, fast, reliable (why didn't I know this earlier?).
+permalink: :title
 ---
 It's amlost as flexible and verbose as gitlabs CI feature. But without all the overhead.
 For me, the key was setting up the bare git repo on the production server:
