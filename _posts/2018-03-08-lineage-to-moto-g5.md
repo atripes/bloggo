@@ -14,7 +14,7 @@ Requirements:
   * [TWRP](https://twrp.me/Devices/)
 
 Connect your device and activate USB Debugging (in Developer Mode).
-I had to find out a specific unlock key to provide to Lenovo in order to unlock my boot loader. If someone could tell me why the hell Lenovo is interested in shit that only and ONLY concerns me and my own property, please indulge me.
+I had to find a specific unlock key to provide to Lenovo in order to unlock my boot loader. If someone could tell me why the hell Lenovo is interested in shit that only concerns me and my own property, please indulge me.
 
 ```
 user@machine:~$ ./adb devices
@@ -22,12 +22,15 @@ user@machine:~$ ./adb reboot bootloader
 user@machine:~$ ./fastboot oem get_unlock_data
 user@machine:~$ ./fastboot oem unlock MY_OWN_PRIVATE_CODE
 ```
+The commands above is how you get the code needed for the [official page](https://motorola-global-portal.custhelp.com/app/standalone/bootloader/unlock-your-device-b/session/L3RpbWUvMTUyMTAyMTY4MC9zaWQvZlVSckg1SXJna1dyUlI5dE1CTTBmVmM4Z1NLckJwdTN3UnJMRlJ0R0F0Y29oakFSUEtoeEtxUEJrQ2g1b1VBOEFWalk4V2l0SV9FODVlNWhMV2NXeGIlN0VxWV9iMVVoMFpzS01CS1F5M3hpOUE0QmJGNms0XyU3RWlRZyUyMSUyMS9wdGEvMQ==) for unlocking the bootloader of your Moto.
+
 From here on it's getting the twrp recovery image flashed onto the device:
 ```
 user@machine:~$ cp ~/Downloads/twrp-3.2.1-0-cedric.img ./recovery.img
 user@machine:~$ ./fastboot flash recovery recovery.img
 ```
-That's it, now the device reboots into TWRP.
+
+That's it, now you can boot into TWRP.
 
 ## Install LineAge and GApps
 Requirements:

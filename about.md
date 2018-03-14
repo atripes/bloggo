@@ -1,8 +1,9 @@
 ---
-layout: page
+layout: post
 title: About
 nav-menu: true
-permalink: /about/
+permalink: about
 ---
 
-developer at brain&heart.
+## Get this done.
+## Developer at Brain&Heart.
