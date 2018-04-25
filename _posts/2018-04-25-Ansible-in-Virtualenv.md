@@ -7,7 +7,9 @@ permalink: :title
 
 ## The problem
 Ansible installed via standard OS package manager uses standard OS python. Yes, in practice this is exactly as horrible as you might imagine. I learned that the OS python is something you never want to touch, change, symlink, update, or do anything else with it beside acting as if it wasn't there.  
+
 Example: We use ansible to provision digital ocean machines with the official DO ansible module. It requires the pip package `dopy`. This is one of many custom dependencies your project might have and if you use system installed ansible then you have to install dopy system wide. That is, if ansible is configured to use the right python binary. That works, if you have the $PYTHONPATH set to something this binary understands, and finds dopy in it.  
+
 Suddenly vim starts acting up. Some of the plugins also use python and cannot cope well with the newly set PYTHONPATH needed for ansible. You see, python versioning is hell. Python is powerful and everyone wants to use it. In its own version, depending on version 2.7, 3.5, you name it. So: everyone gets their own python (that must sound so weird to the *elderly*!)
 
 ## The solution
