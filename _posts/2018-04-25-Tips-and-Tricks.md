@@ -22,6 +22,10 @@ You have to use other measures when OSX is in play, because Apple. Use npms `htt
 Fuck, this will be a standalone post at some point. Nah, wait, it's so easy:
 `git clone https://github.com/core-process/linux-unattended-installation.git` and then follow the readme. Only works on Linux hosts.
 
+## Compress mp4 via ffmpeg
+This compresses the input by a factor of ~12:
+`ffmpeg -i ds_orig.mp4 -c:v libx264 -c:a copy -crf 28 -preset veryfast x264_crf28.mp4`
+
 
 This will be constantly updated.
 
