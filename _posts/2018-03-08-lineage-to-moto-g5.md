@@ -38,6 +38,7 @@ Requirements:
   * [GApps](http://opengapps.org/)
 
 I used [Android File Transfer](https://www.android.com/filetransfer/) to move the zip files onto my sdcard (moto g5 hdd). Once on the device you can Install them using the TWRP GUI.
+You can also use (and this is more resilient) adb for this: `./adb push <filename> /sdcard/`
 
 ## Titanium Backup with Synology DSM
 
