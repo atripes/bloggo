@@ -42,4 +42,5 @@ You can also use (and this is more resilient) adb for this: `./adb push <filenam
 
 ## Titanium Backup with Synology DSM
 
+Root your device. For Lineage 14.1 this is easiest done via the official [su addon](https://download.lineageos.org/extras). Install via TWRP and tick `enable root access` in the Developer Options of your OS.
 Get and pay for Titanium Backup. Setup a Synology DiskStation in your home and install CloudStation on your mobile device. Once you have that you can Backup all user settings and all applications to that CloudStation and have it synced with your home NAS. Which again can be (or should be) backed up to an encrypted offsite backup location. gl & hf.
