@@ -10,7 +10,7 @@ I hate bloatware. All stock vendor software is spying bloatware that only exists
 ## Unlock Bootloader / Install Team Win Recovery Project
 
 Requirements:
-  * [adb and fastboot](http://d-h.st/n5I) (OSX version)
+  * [adb and fastboot](https://developer.android.com/studio/releases/platform-tools)
   * [TWRP](https://twrp.me/Devices/)
 
 Connect your device and activate USB Debugging (in Developer Mode).
