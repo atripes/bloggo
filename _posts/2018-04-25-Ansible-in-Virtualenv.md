@@ -6,7 +6,7 @@ permalink: :title
 ---
 
 ## The problem
-Ansible installed via standard OS package manager uses standard OS python. Yes, in practice this is exactly as horrible as you might imagine. I learned that the OS python is something you never want to touch, change, symlink, update, or do anything else with it beside acting as if it wasn't there. Funny sidenote, xkcd released (this)[https://xkcd.com/1987/] while I was writing this post. Sums it up so nicely!
+Ansible installed via standard OS package manager uses standard OS python. Yes, in practice this is exactly as horrible as you might imagine. I learned that the OS python is something you never want to touch, change, symlink, update, or do anything else with it beside acting as if it wasn't there. Funny sidenote, xkcd released [this](https://xkcd.com/1987/) while I was writing this post. Sums it up so nicely!
 
 Example: We use ansible to provision digital ocean machines with the official DO ansible module. It requires the pip package `dopy`. This is one of many custom dependencies your project might have and if you use system installed ansible then you have to install dopy system wide. That is, if ansible is configured to use the right python binary. That works, if you have the $PYTHONPATH set to something this binary understands, and finds dopy in it.  
 
