@@ -26,6 +26,10 @@ Fuck, this will be a standalone post at some point. Nah, wait, it's so easy:
 This compresses the input by a factor of ~12:
 `ffmpeg -i ds_orig.mp4 -c:v libx264 -c:a copy -crf 28 -preset veryfast x264_crf28.mp4`
 
+## Disable mouse acceleration in OSX (High Sierra)
+`defaults read .GlobalPreferences com.apple.mouse.scaling` to read the value.
+`defaults write .GlobalPreferences com.apple.mouse.scaling -1` to disable it. Login again for changes being applied.
+
 
 This will be constantly updated.
 
