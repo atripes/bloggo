@@ -29,10 +29,11 @@ This compresses the input by a factor of ~12:
 ## Disable mouse acceleration in OSX (High Sierra)
 `defaults read .GlobalPreferences com.apple.mouse.scaling` to read the value.
 `defaults write .GlobalPreferences com.apple.mouse.scaling -1` to disable it. Login again for changes being applied.
+Create a task with Automator (shellscript) and paste the write portion to it. Add it as a login item in `system-preferences -> user and groups`
+
+## Certbot (letsencrypt) for multiple domains
+`certbot --nginx -d domain1 -d domain2 -d domain3`.
 
 
-This will be constantly updated.
-
-Keep on rocking in the free world, and doo doo deloo doo ...
 
 Don't forget about archive.org if the links are broken.
