@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>devblog</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/main.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+</head>
+
+
+<body>
+
+    <!-- Wrapper -->
+<div id="wrapper">
+
+<!-- Header -->
+<header id="header">
+	<a href="http://localhost:4000/" class="logo"><strong>devblog</strong> <span>by atripes</span></a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+        
+		    
+		        <li><a href="http://localhost:4000//"></a></li>
+	    	
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		        <li><a href="http://localhost:4000//">Home</a></li>
+	    	
+		
+		    
+		
+		    
+		
+		
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/about">About</a></li>
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+	</ul>
+	<!--ul class="actions vertical">
+		<li><a href="#" class="button special fit">Get Started</a></li>
+		<li><a href="#" class="button fit">Log In</a></li>
+	</ul-->
+</nav>
+ 
+    
+    
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+			<h1>Ansible in a virtualenv</h1>
+		</header>
+		
+		<p><h2 id="the-problem">The problem</h2>
+<p>Ansible installed via standard OS package manager uses standard OS python. Yes, in practice this is exactly as horrible as you might imagine. I learned that the OS python is something you never want to touch, change, symlink, update, or do anything else with it beside acting as if it wasn’t there.</p>
+
+<p>Example: We use ansible to provision digital ocean machines with the official DO ansible module. It requires the pip package <code class="highlighter-rouge">dopy</code>. This is one of many custom dependencies your project might have and if you use system installed ansible then you have to install dopy system wide. That is, if ansible is configured to use the right python binary. That works, if you have the $PYTHONPATH set to something this binary understands, and finds dopy in it.</p>
+
+<p>Suddenly vim starts acting up. Some of the plugins also use python and cannot cope well with the newly set PYTHONPATH needed for ansible. You see, <a href="https://xkcd.com/1987/">python versioning is hell</a>. Python is powerful and everyone wants to use it. In its own version, depending on version 2.7, 3.5, you name it. So: everyone gets their own python (that must sound so weird to the <em>elderly</em>!)</p>
+
+<h2 id="the-solution">The solution</h2>
+<p><code class="highlighter-rouge">virtualenv</code> to the rescue. It’s like a small python sandbox where all dependecies for the current environment are stored. Thank god ansible is also a pip package, that makes things even easier. Since virtualenv has been around for a bit (~2007) and is a bit clunky to use you can use <a href="https://virtualenv.pypa.io/en/stable/">virtualenvwrapper</a> and you’re good.
+Follow the installation procedure for your OS.</p>
+
+<p>So now, if you have a project that needs ansible go inside that projects folder and install ansible inside virtualenv:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkvirtualenv &lt;projectname&gt;
+workon &lt;projectname&gt;
+pip install ansible
+pip install &lt;random ansible dependency&gt;
+</code></pre></div></div>
+<p>And boom. Try <code class="highlighter-rouge">ansible --version</code> and muse at the fact that your python binary now comes from within your virtual sandbox. So cosy!</p>
+
+<p>If you, like me, find it a tad tedious to create the sandbox for every project - not all projects have custom deps - then make a folder <code class="highlighter-rouge">ansible</code> in your <code class="highlighter-rouge">~/bin/</code> folder and just do</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkvirtualenv --system-site-packages ansible
+workon ansible
+pip install ansible
+</code></pre></div></div>
+<p>You can now whenever you need ansible somewhere type <code class="highlighter-rouge">workon ansible</code> and you have your system wide version ready. I even deinstalled my OS package manager version (brew in my case).</p>
+
+<p>Keep on rocking in the free world, and doo doo deloo doo …</p>
+
+<p>Don’t forget about archive.org if the links are broken.</p>
+</p>
+	</div>
+</section>
+
+</div>
+
+    <!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</ul>
+			<ul class="copyright">
+				<li>&copy; devblog by atripes</li>
+				<li>Design: <a href="https://html5up.net" target="_blank">HTML5 UP</a></li>
+				<li>Jekyll integration: <a href="http://andrewbanchi.ch" target="_blank">Andrew Banchich</a></li>
+
+			</ul>
+		</div>
+	</footer>
+
+</div>
+
+<!-- Scripts -->
+	<script src="http://localhost:4000/assets/js/jquery.min.js"></script>
+	<script src="http://localhost:4000/assets/js/jquery.scrolly.min.js"></script>
+	<script src="http://localhost:4000/assets/js/jquery.scrollex.min.js"></script>
+	<script src="http://localhost:4000/assets/js/skel.min.js"></script>
+	<script src="http://localhost:4000/assets/js/util.js"></script>
+	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/respond.min.js"></script><![endif]-->
+	<script src="http://localhost:4000/assets/js/main.js"></script>
+
+
+</body>
+
+</html>

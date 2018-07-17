@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>devblog</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/main.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+</head>
+
+
+<body>
+
+    <!-- Wrapper -->
+<div id="wrapper">
+
+<!-- Header -->
+<header id="header">
+	<a href="http://localhost:4000/" class="logo"><strong>devblog</strong> <span>by atripes</span></a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+        
+		    
+		        <li><a href="http://localhost:4000//"></a></li>
+	    	
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		        <li><a href="http://localhost:4000//">Home</a></li>
+	    	
+		
+		    
+		
+		    
+		
+		
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/about">About</a></li>
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+	</ul>
+	<!--ul class="actions vertical">
+		<li><a href="#" class="button special fit">Get Started</a></li>
+		<li><a href="#" class="button fit">Log In</a></li>
+	</ul-->
+</nav>
+ 
+    
+    
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+			<h1>Tips and Trips</h1>
+		</header>
+		
+		<p><h2 id="serve-a-file-in-a-network">Serve a file in a network</h2>
+<p>You can use socket on pure Linux machines:
+<code class="highlighter-rouge">tar -cvz .folder-to-serve | socket -sqw &lt;port&gt;</code> on the server and
+<code class="highlighter-rouge">socket -q &lt;server-ip&gt;:&lt;port&gt; | tar -xvz</code> on the client and voila enjoy your file.</p>
+
+<p>You have to use other measures when OSX is in play, because Apple. Use npms <code class="highlighter-rouge">http-server</code>!
+<code class="highlighter-rouge">npm install -g http-server</code> and then 
+<code class="highlighter-rouge">cd &lt;DIR TO SERVE&gt; &amp;&amp; http-server</code> That’s it. now you can <code class="highlighter-rouge">wget &lt;server-ip&gt;/file</code> and feel like a free man.</p>
+
+<h2 id="use-pipenv-instead-of-pip">Use pipenv instead of pip</h2>
+<p>(https://docs.pipenv.org/)</p>
+
+<h2 id="unattended-linux-install-using-preseed-file">Unattended linux install using preseed file</h2>
+<p>Fuck, this will be a standalone post at some point. Nah, wait, it’s so easy:
+<code class="highlighter-rouge">git clone https://github.com/core-process/linux-unattended-installation.git</code> and then follow the readme. Only works on Linux hosts.</p>
+
+<h2 id="compress-mp4-via-ffmpeg">Compress mp4 via ffmpeg</h2>
+<p>This compresses the input by a factor of ~12:
+<code class="highlighter-rouge">ffmpeg -i ds_orig.mp4 -c:v libx264 -c:a copy -crf 28 -preset veryfast x264_crf28.mp4</code></p>
+
+<h2 id="disable-mouse-acceleration-in-osx-high-sierra">Disable mouse acceleration in OSX (High Sierra)</h2>
+<p><code class="highlighter-rouge">defaults read .GlobalPreferences com.apple.mouse.scaling</code> to read the value.
+<code class="highlighter-rouge">defaults write .GlobalPreferences com.apple.mouse.scaling -1</code> to disable it. Login again for changes being applied.
+Create a task with Automator (shellscript) and paste the write portion to it. Add it as a login item in <code class="highlighter-rouge">system-preferences -&gt; user and groups</code></p>
+
+<h2 id="certbot-letsencrypt-for-multiple-domains">Certbot (letsencrypt) for multiple domains</h2>
+<p><code class="highlighter-rouge">certbot --nginx -d domain1 -d domain2 -d domain3</code>.</p>
+
+<p>Don’t forget about archive.org if the links are broken.</p>
+</p>
+	</div>
+</section>
+
+</div>
+
+    <!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			</ul>
+			<ul class="copyright">
+				<li>&copy; devblog by atripes</li>
+				<li>Design: <a href="https://html5up.net" target="_blank">HTML5 UP</a></li>
+				<li>Jekyll integration: <a href="http://andrewbanchi.ch" target="_blank">Andrew Banchich</a></li>
+
+			</ul>
+		</div>
+	</footer>
+
+</div>
+
+<!-- Scripts -->
+	<script src="http://localhost:4000/assets/js/jquery.min.js"></script>
+	<script src="http://localhost:4000/assets/js/jquery.scrolly.min.js"></script>
+	<script src="http://localhost:4000/assets/js/jquery.scrollex.min.js"></script>
+	<script src="http://localhost:4000/assets/js/skel.min.js"></script>
+	<script src="http://localhost:4000/assets/js/util.js"></script>
+	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/respond.min.js"></script><![endif]-->
+	<script src="http://localhost:4000/assets/js/main.js"></script>
+
+
+</body>
+
+</html>
