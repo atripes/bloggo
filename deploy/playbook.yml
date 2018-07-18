@@ -1,0 +1,38 @@
+---
+- name: Installs python
+  hosts: "{{ target }}"
+  become: true
+  gather_facts: no
+  pre_tasks:
+    - name: Install python 
+      raw: sudo apt-get install -y python-simplejson
+  tasks: []
+
+- name: Install required packages
+  become: True
+  apt: pkg={{ item }} state=present update_cache=yes cache_valid_time=3600
+  with_items:
+    - nodejs
+    - npm
+    - git
+
+- name: Clone bare github repo to user folder
+  hosts: "{{ target }}"
+  command: git clone --bare {{ github_repo }} {{ git_bare_repo }}
+
+- name: Setup post receive hook
+  template: dest={{ git_bare_repo }}/hooks/post-receive src=templates/post-receive mode=0775
+
+- name: Install nodejs version manager
+  become: True
+  npm: name=n global=yes
+
+- name: Install node
+  become: True
+  command: n latest
+  before_install:
+    - "npm config -g set strict-ssl false"
+
+- name: Install simple-search
+  become: True
+  npm: name=jekyll-simple-search global=yes

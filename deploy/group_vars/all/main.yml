@@ -1,0 +1,5 @@
+---
+git_bare_repo: /home/atripes/jekyll-repo
+www_location: /var/www/devblog
+git_version: develop
+github_repo: git@github.com:atripes/bloggo.git
