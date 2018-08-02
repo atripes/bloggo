@@ -15,12 +15,16 @@ Commands that come in handy during the whole operation:
   * `vgdisplay` prints information about the volume group on your device
   * `lvdisplay` prints information about the logical volumes on your device
 
-The idea is, when resizing (eg. making it bigger in our case) that you recreate your partitions in `fdisk`. Be sure to change the partition types to the ones needed: Extended (5) for the primary partition and LVM (8e) for the logical partition. Once you recreated those partitions with maximum sectors - now it should be as much bigger as you wanted it to be - you can resize your physical volume. A restart might be necessary to inform your kernel of the changed properties of `/dev/xvdx`. At this point I always get the error `Failed to initialize DM devices` right at shutdown. I don't know what that means, it has to do with Kernel and LVMs, but for me it was totally fine to ignore this, since after we are done, everything works fine.  
-So, after the reboot you can then `pvresize /dev/<name_of_the_physical_volume_found_with_pvdisplay>`.
+The idea is, when resizing (eg. making it bigger in our case) that you recreate your partitions in `fdisk`. Be sure to change the partition types to the ones needed: Extended (5) for the primary partition and LVM (8e) for the logical partition. Once you recreated those partitions with maximum sectors - now it should be as much bigger as you wanted it to be - you can resize your physical volume. A restart might be necessary to inform your kernel of the changed properties of `/dev/xvdx`. At this point I always get the error 
+```Failed to initialize DM devices```
+ right at shutdown. I don't know what that means, it has to do with Kernel and LVMs, but for me it was totally fine to ignore this, since after we are done, everything works fine.  
+So, after the reboot you can then 
+```pvresize /dev/<name_of_the_physical_volume_found_with_pvdisplay>```
 Hit `pvdisplay` again to show the new size. Also `vgdisplay` now knows of your newly added space.
 Now you can add the space to your logical volumes:
-`lvresize -l+100%FREE /dev/<name_of_the_physical_volume_found_with_pvdisplay>`
-And then resize the fs: `resizefs /dev/<name_of_the_physical_volume_found_with_pvdisplay>`
+```lvresize -l+100%FREE /dev/<name_of_the_physical_volume_found_with_pvdisplay>```
+And then resize the fs: 
+```resizefs /dev/<name_of_the_physical_volume_found_with_pvdisplay>```
 
 You should be done. Check with 'df -h'.
 
