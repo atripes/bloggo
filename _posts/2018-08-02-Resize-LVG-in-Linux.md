@@ -23,3 +23,7 @@ Now you can add the space to your logical volumes:
 And then resize the fs: `resizefs /dev/<name_of_the_physical_volume_found_with_pvdisplay>`
 
 You should be done. Check with 'df -h'.
+
+This small graphic helped me understand LVMs much better.
+{: style="text-align:center"}
+![Sensei](/assets/images/lvm_explained.png)
