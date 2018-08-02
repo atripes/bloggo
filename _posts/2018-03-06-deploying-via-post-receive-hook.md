@@ -29,12 +29,12 @@ done
 ```
 Since this script gets its params from stdin instead of cli parameters you need to fetch them with `read`. because there could be more than one branch pushed, you need to do this for each one seperate, hence the `while` loop. in fact, this never comes into play at my deployments, because when i push to production, i always ever push master.
 
-What this does is, it checks out the project into `/var/www/project_name` which in this case is the location that I serve my site from. In the case of my jekyll application there are still things to do for it to run, I added a Tip to the bottom of this doc how to solve it.
+What this does is, it checks out the project into `/var/www/project_name` which in this case is the location that I serve my site from. In the case of my jekyll application there are still things to do for it to run (protip at the bottom of this doc how to solve it).
 
 Ah, btw. How to push.
-You are on your dev machine, working on the project, pushing happily into whatever repository holds your code. For this deployment routine to work you need to add the correct remote:
+You are on your dev machine, working on the project, pushing happily into whatever repository holds your code. For this deployment routine to work you need to add an additional remote:
 ```
-git remote add production ssh://user@prodserver.com:~/product_name
+git remote add production ssh://user@prodserver.com:~/project_name
 ```
 And you push your current master with:
 ```
@@ -46,6 +46,5 @@ Thanks to `http://www.janosgyerik.com/deploying-new-releases-using-git-and-the-p
 Protip:
 You can add whatever deployment routine you want after that checkout. In my case I am building and restarting a jekyll app, and the command looks like this:
 ```
-git --work-tree=/var/www/project_name --git-dir=/home/user/project_name checkout develop -f && jekyll build && jekyll serve --detach
+git --work-tree=/var/www/project_name --git-dir=/home/user/project_name checkout master -f && jekyll build && jekyll serve --detach
 ```
-
