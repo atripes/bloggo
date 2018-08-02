@@ -22,16 +22,18 @@ Failed to initialize DM devices
  right at shutdown. I don't know what that means, it has to do with Kernel and LVMs, but for me it was totally fine to ignore this, since after we are done, everything works fine.  
 So, after the reboot you can then  
 ```
-pvresize /dev/<name_of_the_physical_volume_found_with_pvdisplay>
+pvresize /dev/xvda5
 ```
+I assume my own environment of `/dev/xvda5`, yours may differ. The partition name, of the partition you want to resize (the one recreated earlier), is found with `fdisk -l`
 Hit `pvdisplay` again to show the new size. Also `vgdisplay` now knows of your newly added space.
 Now you can add the space to your logical volumes:  
 ```
-lvresize -l+100%FREE /dev/<name_of_the_physical_volume_found_with_pvdisplay>
+lvresize -l+100%FREE /dev/<vg_name>/<lv_name>
 ```
+You can find the names for the volume group (vg) and the logical volume (lv) with the respective `display` commands. 
 And then resize the fs:   
 ```
-resizefs /dev/<name_of_the_physical_volume_found_with_pvdisplay>
+resizefs /dev/<vg_name>/<lv_name>
 ```
 
 You should be done. Check with `df -h`.
