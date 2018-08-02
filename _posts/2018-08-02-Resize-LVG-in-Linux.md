@@ -34,7 +34,7 @@ And then resize the fs:
 resizefs /dev/<name_of_the_physical_volume_found_with_pvdisplay>
 ```
 
-You should be done. Check with 'df -h'.
+You should be done. Check with `df -h`.
 
 This small graphic helped me understand LVMs much better.
 (Thanks for that Mr. [pe-kay](https://pe-kay.blogspot.com/2013/04/linux-lvm-explained.html))
