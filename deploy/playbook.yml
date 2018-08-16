@@ -8,31 +8,71 @@
       raw: sudo apt-get install -y python-simplejson
   tasks: []
 
-- name: Install required packages
-  become: True
-  apt: pkg={{ item }} state=present update_cache=yes cache_valid_time=3600
-  with_items:
-    - nodejs
-    - npm
-    - git
-
-- name: Clone bare github repo to user folder
+- name: Setup repo and files
   hosts: "{{ target }}"
-  command: git clone --bare {{ github_repo }} {{ git_bare_repo }}
+  tasks: 
+    - name: Install required packages
+      become: True
+      apt: pkg={{ item }} state=present update_cache=yes cache_valid_time=3600
+      with_items:
+        - nodejs
+        - npm
+        - git
+        - ruby
+        - ruby-dev
+        - build-essential
+        - nginx
+    
+    - name: Create www folder
+      become: True
+      file: path={{ www_location }} state=directory mode=0775 owner={{ user }} group={{ user }}
 
-- name: Setup post receive hook
-  template: dest={{ git_bare_repo }}/hooks/post-receive src=templates/post-receive mode=0775
+    - name: Clone bare github repo to user folder
+      hosts: "{{ target }}"
+      command: git clone --bare {{ github_repo }} {{ git_bare_repo }}
+      args:
+        creates: "{{ git_bare_repo }}"
+    
+    - name: Setup post receive hook
+      template: dest={{ git_bare_repo }}/hooks/post-receive src=templates/post-receive mode=0775
+    
+    - name: Install nodejs version manager
+      become: True
+      npm: name=n global=yes
+    
+    - name: Install node
+      become: True
+      command: n latest
+      before_install:
+        - "npm config -g set strict-ssl false"
 
-- name: Install nodejs version manager
-  become: True
-  npm: name=n global=yes
+    - name: Add npm install location to PATH and ruby
+      become: True
+      copy:
+        dest: /etc/profile.d/custom-path.sh
+        content: 'PATH=$HOME/gems/bin:$PATH:/usr/local/lib'
+    
+    - name: Register cronjob exporting vars
+      cron:
+        name="Export VARS"
+        special_time=reboot
+        job="export GEM_HOME=$HOME/gems"
 
-- name: Install node
-  become: True
-  command: n latest
-  before_install:
-    - "npm config -g set strict-ssl false"
+    - name: Export VARS for ruby
+      shell: export GEM_HOME=$HOME/gems
 
-- name: Install simple-search
-  become: True
-  npm: name=jekyll-simple-search global=yes
+    - name: Install jekyll
+      become: True
+      shell: gem install jekyll bundler
+
+    - name: Install simple-search
+      become: True
+      npm: name={{ item }} global=yes
+      with_items:
+        - simple-jekyll-search
+
+    - name: Copy nginx config
+      become: True
+      template: dest=/etc/nginx/conf.d/devblog src=templates/nginx.conf
+      notify: restart nginx
+

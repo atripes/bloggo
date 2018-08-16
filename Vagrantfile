@@ -11,6 +11,15 @@ Vagrant.configure("2") do |config|
 
     machine.vm.provision "ansible" do |ansible|
       ansible.playbook = "deploy/playbook.yml"
+      ansible.groups = {
+          "local" => 'default'
+      }
+      ansible.extra_vars = {
+        target: 'all'
+      }
+      #ansible.raw_arguments = [
+      #  '-vvv'
+      #]
     end
 
     machine.vm.provider "virtualbox" do |vbox|
