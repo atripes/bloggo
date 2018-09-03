@@ -33,7 +33,7 @@ lvresize -l+100%FREE /dev/<vg_name>/<lv_name>
 You can find the names for the volume group (vg) and the logical volume (lv) with the respective `display` commands. 
 And then resize the fs:   
 ```
-resizefs /dev/<vg_name>/<lv_name>
+resize2fs /dev/<vg_name>/<lv_name>
 ```
 
 You should be done. Check with `df -h`.
