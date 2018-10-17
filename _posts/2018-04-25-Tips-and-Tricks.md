@@ -31,6 +31,8 @@ You have to use other measures when OSX is in play, because Apple. Use npms `htt
 --exclude #exludes files or dirs
 ```
 
+There is also a way to watch a dir for changes using another bin called `inotifywait`. More [here](https://github.com/drunomics/syncd/blob/master/watch.sh).
+
 ## Unattended linux install using preseed file
 Fuck, this will be a standalone post at some point. Nah, wait, it's so easy:
 `git clone https://github.com/core-process/linux-unattended-installation.git` and then follow the readme. Only works on Linux hosts.
