@@ -21,25 +21,39 @@ You have to use other measures when OSX is in play, because Apple. Use npms `htt
 ## Syncronize a directory via rsync
 `rsync --dry-run -P -a -z -e ssh --delete --exclude=node_modules --exclude=.git ./local_dir user@remote.server.com:~/dir`
 
-### --dry-run
+```
+--dry-run
+```
 remove when certain of command 
 
-### -P
+```
+-P
+```
 prints progress information
 
-### -a
+```
+-a
+```
 works like -r (recursive) with added benefits
 
-### -z
+```
+-z
+```
 uses compression algo for transfer
 
-### -e
+```
+-e
+```
 login shell ssh (use rsync over ssh connection)
 
-### --delete
+```
+--delete
+```
 also sync deletion of files
 
-### --exclude
+```
+--exclude
+```
 exludes files or dirs
 
 ## Unattended linux install using preseed file
