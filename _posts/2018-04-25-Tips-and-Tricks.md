@@ -22,39 +22,14 @@ You have to use other measures when OSX is in play, because Apple. Use npms `htt
 `rsync --dry-run -P -a -z -e ssh --delete --exclude=node_modules --exclude=.git ./local_dir user@remote.server.com:~/dir`
 
 ```
---dry-run
+--dry-run #remove when certain of command 
+-P #prints progress information
+-a #works like -r (recursive) with added benefits
+-z #uses compression algo for transfer
+-e #login shell ssh (use rsync over ssh connection)
+--delete #also sync deletion of files
+--exclude #exludes files or dirs
 ```
-remove when certain of command 
-
-```
--P
-```
-prints progress information
-
-```
--a
-```
-works like -r (recursive) with added benefits
-
-```
--z
-```
-uses compression algo for transfer
-
-```
--e
-```
-login shell ssh (use rsync over ssh connection)
-
-```
---delete
-```
-also sync deletion of files
-
-```
---exclude
-```
-exludes files or dirs
 
 ## Unattended linux install using preseed file
 Fuck, this will be a standalone post at some point. Nah, wait, it's so easy:
