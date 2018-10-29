@@ -75,13 +75,10 @@ Type 'Subject: Test from Contoso'.
 Press Enter.  
 A blank line is needed between the Subject: field and the message body.  
   
-Type 'This is a test message.'  
-
-Type a period ('.').  
-
-To disconnect from the SMTP server, type QUIT.  
-
-To close the Telnet session, type quit.  
+Type `This is a test message`. 
+Type a period `.`.  
+To disconnect from the SMTP server, type `QUIT`.  
+To close the Telnet session, type `quit`.  
 
 
 Don't forget about archive.org if the links are broken.
