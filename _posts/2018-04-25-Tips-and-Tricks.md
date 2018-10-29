@@ -49,6 +49,39 @@ Create a task with Automator (shellscript) and paste the write portion to it. Ad
 ## Certbot (letsencrypt) for multiple domains
 `certbot --nginx -d domain1 -d domain2 -d domain3`.
 
+## Mail via Telnet
+    :~ telnet
+
+Start the session.
+
+    :~ SET LOCALECHO
+
+This optional command lets you view the characters as you type them, and it might be required for some SMTP servers.
+
+    :~ set logfile <filename>
+
+This optional command enables logging and specifies the log file for the Telnet session. If you only specify a file name, the log file is located in the current folder. If you specify a path and file name, the path needs to be on the local computer, and you might need to enter the path and file name in the Windows DOS 8.3 format (short name with no spaces). The path needs to exist, but the log file is created automatically.
+
+    :~ OPEN mail1.fabrikam.com 25
+    :~ EHLO contoso.com
+    :~ MAIL FROM:<chris@contoso.com>
+    :~ RCPT TO:<kate@fabrikam.com> NOTIFY=success,failure
+
+The optional NOTIFY command specifies the particular delivery status notification (DSN) messages (also known as bounce messages, nondelivery reports, or NDRs) that the SMTP is required to provide. In this example, you're requesting a DSN message for successful or failed message delivery.
+
+    :~ DATA
+
+Type 'Subject: Test from Contoso'.  
+Press Enter.  
+A blank line is needed between the Subject: field and the message body.  
+  
+Type 'This is a test message.'  
+
+Type a period ('.').  
+
+To disconnect from the SMTP server, type QUIT.  
+
+To close the Telnet session, type quit.  
 
 
 Don't forget about archive.org if the links are broken.
