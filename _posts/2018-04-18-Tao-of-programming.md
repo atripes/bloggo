@@ -11,3 +11,6 @@ permalink: :title
   * [The Tao of programming](http://canonical.org/~kragen/tao-of-programming.html)
 
 Don't forget about archive.org if the links are broken.
+
+
+This didn't work out too well and is deleted soon.
