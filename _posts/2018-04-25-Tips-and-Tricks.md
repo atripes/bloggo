@@ -41,10 +41,17 @@ Fuck, this will be a standalone post at some point. Nah, wait, it's so easy:
 This compresses the input by a factor of ~12:
 `ffmpeg -i ds_orig.mp4 -c:v libx264 -c:a copy -crf 28 -preset veryfast x264_crf28.mp4`
 
-## Disable mouse acceleration in OSX (High Sierra)
+## Mouse adjustments on OSX
+Tested up to Catalina
+### Disable mouse acceleration
 `defaults read .GlobalPreferences com.apple.mouse.scaling` to read the value.
 `defaults write .GlobalPreferences com.apple.mouse.scaling -1` to disable it. Login again for changes being applied.
+Does not seem to be necessary, but I'll keep the nice tip:
 Create a task with Automator (shellscript) and paste the write portion to it. Add it as a login item in `system-preferences -> user and groups`
+
+### Adjust scroll speed
+`defaults write .GlobalPreferences com.apple.scrollwheel.scaling 0.7` to set it to 0.7
+`defaults write .GlobalPreferences com.apple.scrollwheel.scaling -1` to disable acceleration. Yes, the setting feels like it does two things.
 
 ## Certbot (letsencrypt) for multiple domains
 `certbot --nginx -d domain1 -d domain2 -d domain3`.
