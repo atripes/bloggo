@@ -5,6 +5,15 @@ description: This... you will love.
 permalink: :title
 ---
 
+## Route traffic over VPN
+### Windows
+```route print #prints all routes```
+```route add <remote_addr> <vpn_gw_address>```
+```route delete <remote_addr>```
+### OSX/Linux
+```ifconfig #to find out which device your tunnel is```
+```route add <remote_addr> dev tun0```
+
 ## Serve a file in a network
 You can use socket on pure Linux machines:
 `tar -cvz .folder-to-serve | socket -sqw <port>` on the server and
