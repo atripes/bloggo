@@ -4,4 +4,4 @@ www_location: /var/www/devblog
 git_version: develop
 github_repo: https://github.com/atripes/bloggo.git
 user: atripes
-server_name: "blog.atrioom.com hetzner.atrioom.com"
+server_name: "blog.atripes.at"
