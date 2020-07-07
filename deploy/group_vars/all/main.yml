@@ -1,5 +1,5 @@
 ---
-git_bare_repo: /home/vagrant/jekyll-repo
+git_bare_repo: /home/vagrant/bloggo
 www_location: /var/www/devblog
 git_version: master
 github_repo: https://github.com/atripes/bloggo.git
