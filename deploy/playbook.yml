@@ -13,15 +13,7 @@
   tasks: 
     - name: Install required packages
       become: True
-      apt: pkg={{ item }} state=present update_cache=yes cache_valid_time=3600
-      with_items:
-        - nodejs
-        - npm
-        - git
-        - ruby
-        - ruby-dev
-        - build-essential
-        - nginx
+      apt: pkg=['ruby-full', 'build-essential', 'zlib1g-dev', 'nodejs', 'npm', 'git', 'build-essential', 'nginx'] state=present update_cache=yes cache_valid_time=3600
 
     - name: Add the user
       user:
@@ -62,6 +54,11 @@
         special_time=reboot
         job="export GEM_HOME=$HOME/gems"
 
+    - name: Register cronjob start jekyll
+      cron:
+        special_time=reboot
+        job="cd /var/www/devblog && jekyll build && jekyll serve --detach"
+
     - name: Export VARS for ruby
       shell: export GEM_HOME=$HOME/gems
 
@@ -69,15 +66,28 @@
       become: True
       shell: gem install jekyll bundler
 
-    - name: Install simple-search
-      become: True
-      npm: name={{ item }} global=yes
-      with_items:
-        - simple-jekyll-search
+    - name: Checkout jekyll
+      command: chdir="{{ www_location }}" git --work-tree="{{ www_location }}" --git-dir="{{ git_bare_repo }}" checkout "{{ git_version }}" -f
+
+    - name: Build jekyll
+      command: chdir="{{ www_location }}" jekyll build
+
+    - name: Start jekyll
+      command: chdir="{{ www_location }}" jekyll serve --detach --watch
+
+    - name: delete default nginx
+      file: src=/etc/nginx/sites-enabled/default state=absent
 
     - name: Copy nginx config
       become: True
-      template: dest=/etc/nginx/conf.d/devblog src=templates/nginx.conf
+      template: dest=/etc/nginx/sites-available/devblog src=templates/nginx.conf
+
+    - name: create symlink
+      file:
+        src: /etc/nginx/sites-available/devblog
+        dest: /etc/nginx/sites-enabled/devblog
+        state: link
+      become: yes
       notify: restart nginx
 
   handlers:
