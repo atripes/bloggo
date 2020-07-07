@@ -1,7 +1,7 @@
 ---
 git_bare_repo: /home/atripes/jekyll-repo
 www_location: /var/www/devblog
-git_version: develop
+git_version: master
 github_repo: https://github.com/atripes/bloggo.git
 user: atripes
 server_name: "blog.atripes.at"
