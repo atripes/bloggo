@@ -1,2 +1,2 @@
 [production]
-blog.atripes.at
+blog.atripes.at ansible_user=root

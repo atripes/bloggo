@@ -1,6 +1,0 @@
-handlers:
-     - name: restart nginx
-       service: name=nginx state=restarted enabled=yes
-       # ignore if nginx not yet installed
-       ignore_errors: True
-       become: True

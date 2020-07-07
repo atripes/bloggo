@@ -1,11 +1,11 @@
 ---
-- name: Installs python
+- name: Installs python3
   hosts: "{{ target }}"
   become: true
   gather_facts: no
   pre_tasks:
-    - name: Install python 
-      raw: sudo apt-get install -y python-simplejson
+    - name: Install python3 
+      raw: sudo apt-get install -y python3
   tasks: []
 
 - name: Setup repo and files
@@ -22,13 +22,16 @@
         - ruby-dev
         - build-essential
         - nginx
-    
+
+    - name: Add the user
+      user:
+        name: '{{ user }}'
+
     - name: Create www folder
       become: True
       file: path={{ www_location }} state=directory mode=0775 owner={{ user }} group={{ user }}
 
     - name: Clone bare github repo to user folder
-      hosts: "{{ target }}"
       command: git clone --bare {{ github_repo }} {{ git_bare_repo }}
       args:
         creates: "{{ git_bare_repo }}"
@@ -40,11 +43,12 @@
       become: True
       npm: name=n global=yes
     
+    - name: Set npm config strict-ssl
+      command: npm config -g set strict-ssl false
+
     - name: Install node
       become: True
       command: n latest
-      before_install:
-        - "npm config -g set strict-ssl false"
 
     - name: Add npm install location to PATH and ruby
       become: True
@@ -76,3 +80,9 @@
       template: dest=/etc/nginx/conf.d/devblog src=templates/nginx.conf
       notify: restart nginx
 
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted enabled=yes
+      # ignore if nginx not yet installed
+      ignore_errors: True
+      become: True
