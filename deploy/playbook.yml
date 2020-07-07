@@ -13,7 +13,19 @@
   tasks: 
     - name: Install required packages
       become: True
-      apt: pkg=['ruby-full', 'build-essential', 'zlib1g-dev', 'nodejs', 'npm', 'git', 'build-essential', 'nginx'] state=present update_cache=yes cache_valid_time=3600
+      apt: 
+        pkg: 
+          - ruby-full
+          - build-essential
+          - zlib1g-dev
+          - nodejs
+          - npm
+          - git
+          - build-essential
+          - nginx
+        state: present
+        update_cache: yes
+        cache_valid_time: 3600
 
     - name: Add the user
       user:
@@ -76,7 +88,7 @@
       command: chdir="{{ www_location }}" jekyll serve --detach --watch
 
     - name: delete default nginx
-      file: src=/etc/nginx/sites-enabled/default state=absent
+      file: path=/etc/nginx/sites-enabled/default state=absent
 
     - name: Copy nginx config
       become: True
