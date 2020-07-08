@@ -96,6 +96,10 @@
       become: True
       template: dest=/etc/nginx/sites-available/devblog src=templates/nginx.conf
 
+    - name: Copy htpasswd
+      become: True
+      template: dest=/etc/nginx/.htpasswd src=templates/htpasswd
+
     - name: create symlink
       file:
         src: /etc/nginx/sites-available/devblog
