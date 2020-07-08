@@ -72,7 +72,7 @@
     - name: Register cronjob start jekyll
       cron:
         special_time=reboot
-        job="cd /var/www/devblog && jekyll build && jekyll serve --detach"
+        job="cd /var/www/devblog && JEKYLL_ENV=production jekyll build && JEKYLL_ENV=production jekyll serve --detach"
 
     - name: Export VARS for ruby
       shell: export GEM_HOME=$HOME/gems
@@ -86,9 +86,14 @@
 
     - name: Build jekyll
       command: chdir="{{ www_location }}" jekyll build
+      environment:
+        JEKYLL_ENV: production
 
     - name: Start jekyll
-      command: chdir="{{ www_location }}" jekyll serve --detach --watch
+      command: chdir="{{ www_location }}" jekyll serve --detach
+      environment:
+        JEKYLL_ENV: production
+      ignore_errors: yes
 
     - name: delete default nginx
       file: path=/etc/nginx/sites-enabled/default state=absent
