@@ -23,6 +23,8 @@
           - git
           - build-essential
           - nginx
+          - certbot
+          - python3-certbot-nginx
         state: present
         update_cache: yes
         cache_valid_time: 3600
@@ -101,6 +103,10 @@
         state: link
       become: yes
       notify: restart nginx
+
+    - name: Install certificates
+      command: certbot --noninteractive --agree-tos --no-eff-email --cert-name atripes.at --nginx --redirect -d blog.atripes.at -d atripes.at -m certbot@atripes.at
+      become: yes
 
   handlers:
     - name: restart nginx
