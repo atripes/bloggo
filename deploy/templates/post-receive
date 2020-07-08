@@ -6,5 +6,5 @@ cd {{ www_location }}
 while read oldrev newrev ref
 do
 	echo "Ref $ref successfully received. Deploying the server..."
-	git --work-tree={{ www_location }} --git-dir={{ git_bare_repo }} checkout {{ git_version }} -f && jekyll build && jekyll serve --detach --watch
+	git --work-tree={{ www_location }} --git-dir={{ git_bare_repo }} checkout {{ git_version }} -f && jekyll build && JEKYLL_ENV=production jekyll serve --detach
 done
