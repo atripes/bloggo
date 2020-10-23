@@ -36,7 +36,7 @@ And then resize the fs:
 resize2fs /dev/<vg_name>/<lv_name>
 ```
 
-You should be done. You can check with `df -h`.
+You should be done! You can check with `df -h`.
 
 This small graphic helped me understand LVMs much better.
 (Thanks for that Mr. [pe-kay](https://pe-kay.blogspot.com/2013/04/linux-lvm-explained.html))
