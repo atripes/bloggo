@@ -30,7 +30,7 @@ user@machine:~$ cp ~/Downloads/twrp-3.2.1-0-cedric.img ./recovery.img
 user@machine:~$ ./fastboot flash recovery recovery.img
 ```
 
-That's it, now you can boot into TWRP.
+That is it, now you can boot into TWRP.
 
 ## Install LineAge and GApps
 Requirements:
